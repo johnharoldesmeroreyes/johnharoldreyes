@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Harold Esmero Reyes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .blue-gradient {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 25%, #60a5fa  50%, #93c5fd 75%, #dbeafe 100%);
+        }
+        
+        .blue-gradient-dark {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+        }
+        
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .blue-glow {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .floating-animation {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .slide-in-bottom {
+            animation: slideInBottom 0.8s ease-out;
+        }
+        
+        @keyframes slideInBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .typing-effect {
+            border-right: 2px solid #3b82f6;
+            animation: typing 4s steps(40) infinite, blink 1s infinite;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @keyframes typing {
+            0%, 25% { width: 0; }
+            50%, 75% { width: 100%; }
+            100% { width: 0; }
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #3b82f6; }
+        }
+        
+        .skill-progress {
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+        }
+        
+        .blue-text-gradient {
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .section-reveal.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
+    <!-- Edit Mode Toggle Button -->
+    <button id="edit-toggle" onclick="toggleEditMode()" class="fixed top-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition duration-300 shadow-lg">
+        ✏️ Edit Content
+    </button>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 glass-morphism">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold">
+                    <span class="blue-text-gradient">JOHN HAROLD</span>
+                    <span class="text-blue-600 ml-2">REYES</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-blue-300">Home</a>
+                    <a href="#about" class="nav-link text-white hover:text-blue-300">About</a>
+                    <a href="#services" class="nav-link text-white hover:text-blue-300">Services</a>
+                    <a href="#portfolio" class="nav-link text-white hover:text-blue-300">Portfolio</a>
+                    <a href="#skills" class="nav-link text-white hover:text-blue-300">Skills</a>
+                    <a href="#contact" class="nav-link text-white hover:text-blue-300">Contact</a>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition duration-300 blue-glow">
+                    Hire Me
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-full blue-gradient flex items-center justify-center relative overflow-hidden">
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-20 w-20 h-20 bg-white/20 rounded-full floating-animation"></div>
+        <div class="absolute top-40 right-32 w-16 h-16 bg-white/15 rounded-full floating-animation" style="animation-delay: -1s;"></div>
+        <div class="absolute bottom-32 left-1/3 w-12 h-12 bg-white/25 rounded-full floating-animation" style="animation-delay: -2s;"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10 pt-20">
+            <div class="slide-in-left text-white">
+                <div class="mb-6">
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-medium">👋 Welcome to my portfolio</span>
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+                    <span class="block" data-editable>John Harold</span>
+                    <span class="block text-blue-200" data-editable>Esmero Reyes</span>
+                </h1>
+                <div class="text-2xl mb-6">
+                    <span class="typing-effect" data-editable>Professional Full-Stack Developer</span>
+                </div>
+                <p class="text-xl text-blue-100 mb-8 leading-relaxed max-w-lg" data-editable>
+                    Crafting exceptional digital experiences with cutting-edge technology. 
+                    Transforming ideas into powerful, scalable solutions that drive business success.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition duration-300 blue-glow">
+                        View My Work
+                    </button>
+                    <button class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-full font-semibold transition duration-300">
+                        Download CV
+                    </button>
+                </div>
+            </div>
+            
+            <div class="slide-in-right flex justify-center">
+                <div class="relative">
+                    <div class="w-96 h-96 glass-morphism rounded-3xl p-8 floating-animation">
+                        <div class="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center text-8xl text-white">
+                            💼
+                        </div>
+                    </div>
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center text-3xl animate-bounce">
+                        ⭐
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-green-400 rounded-full flex items-center justify-center text-2xl animate-pulse">
+                        🚀
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 section-reveal">
+                <span class="text-blue-600 font-semibold text-lg mb-4 block">Get to know me</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">About Me</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="section-reveal">
+                    <div class="bg-blue-50 rounded-3xl p-8">
+                        <div class="w-full h-80 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center text-6xl text-white">
+                            👨‍💻
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-reveal">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6" data-editable>Professional Developer & Digital Innovator</h3>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed" data-editable>
+                        I'm a passionate full-stack developer with over 5 years of experience creating 
+                        exceptional digital solutions. My expertise spans across modern web technologies, 
+                        mobile development, and cloud architecture.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-editable>
+                        I believe in writing clean, efficient code and creating user experiences that 
+                        not only look great but also perform flawlessly. Every project is an opportunity 
+                        to push boundaries and deliver excellence.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="text-center p-6 bg-blue-50 rounded-xl">
+                            <div class="text-3xl font-bold text-blue-600 mb-2" id="experience-years">0</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center p-6 bg-blue-50 rounded-xl">
+                            <div class="text-3xl font-bold text-blue-600 mb-2" id="projects-completed">0</div>
+                            <div class="text-gray-600">Projects Completed</div>
+                        </div>
+                        <div class="text-center p-6 bg-blue-50 rounded-xl">
+                            <div class="text-3xl font-bold text-blue-600 mb-2" id="happy-clients">0</div>
+                            <div class="text-gray-600">Happy Clients</div>
+                        </div>
+                        <div class="text-center p-6 bg-blue-50 rounded-xl">
+                            <div class="text-3xl font-bold text-blue-600 mb-2" id="awards-won">0</div>
+                            <div class="text-gray-600">Awards Won</div>
+                        </div>
+                    </div>
+                    
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition duration-300">
+                        Learn More About Me
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-blue-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 section-reveal">
+                <span class="text-blue-600 font-semibold text-lg mb-4 block">What I offer</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">My Services</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        🌐
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4" data-editable>Web Development</h3>
+                    <p class="text-gray-600 mb-6" data-editable>Custom web applications built with modern frameworks like React, Vue.js, and Angular. Responsive, fast, and user-friendly.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Frontend Development</li>
+                        <li>• Backend APIs</li>
+                        <li>• Database Design</li>
+                        <li>• Performance Optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        📱
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4" data-editable>Mobile Development</h3>
+                    <p class="text-gray-600 mb-6" data-editable>Cross-platform mobile applications using React Native and Flutter. Native performance with shared codebase.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• iOS & Android Apps</li>
+                        <li>• Cross-platform Solutions</li>
+                        <li>• App Store Deployment</li>
+                        <li>• Maintenance & Updates</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        ☁️
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4" data-editable>Cloud Solutions</h3>
+                    <p class="text-gray-600 mb-6" data-editable>Scalable cloud architecture using AWS, Azure, and Google Cloud. DevOps, CI/CD, and infrastructure management.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Cloud Architecture</li>
+                        <li>• DevOps & CI/CD</li>
+                        <li>• Server Management</li>
+                        <li>• Security Implementation</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        🎨
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">UI/UX Design</h3>
+                    <p class="text-gray-600 mb-6">User-centered design approach creating intuitive interfaces that enhance user experience and drive engagement.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• User Interface Design</li>
+                        <li>• User Experience Research</li>
+                        <li>• Prototyping</li>
+                        <li>• Design Systems</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        🤖
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">AI Integration</h3>
+                    <p class="text-gray-600 mb-6">Integrate artificial intelligence and machine learning capabilities into your applications for enhanced functionality.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Machine Learning Models</li>
+                        <li>• AI-powered Features</li>
+                        <li>• Data Analytics</li>
+                        <li>• Automation Solutions</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        💼
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Consulting</h3>
+                    <p class="text-gray-600 mb-6">Technical consulting and code reviews to help optimize your existing projects and guide technology decisions.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Technical Audits</li>
+                        <li>• Code Reviews</li>
+                        <li>• Architecture Planning</li>
+                        <li>• Team Mentoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 section-reveal">
+                <span class="text-blue-600 font-semibold text-lg mb-4 block">My expertise</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Technical Skills</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="section-reveal">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Programming Languages & Frameworks</h3>
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold text-gray-800">JavaScript / TypeScript</span>
+                                <span class="text-blue-600 font-semibold">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold text-gray-800">React / Next.js</span>
+                                <span class="text-blue-600 font-semibold">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="92%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold text-gray-800">Node.js / Express</span>
+                                <span class="text-blue-600 font-semibold">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="88%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold text-gray-800">Python / Django</span>
+                                <span class="text-blue-600 font-semibold">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold text-gray-800">Cloud & DevOps</span>
+                                <span class="text-blue-600 font-semibold">82%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-reveal">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Tools & Technologies</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-6 rounded-xl text-center">
+                            <div class="text-3xl mb-3">⚛️</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Frontend</h4>
+                            <p class="text-sm text-gray-600">React, Vue.js, Angular, HTML5, CSS3, Tailwind</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-xl text-center">
+                            <div class="text-3xl mb-3">🔧</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Backend</h4>
+                            <p class="text-sm text-gray-600">Node.js, Python, PHP, Java, .NET</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-xl text-center">
+                            <div class="text-3xl mb-3">🗄️</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Database</h4>
+                            <p class="text-sm text-gray-600">MongoDB, PostgreSQL, MySQL, Redis</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-xl text-center">
+                            <div class="text-3xl mb-3">☁️</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Cloud</h4>
+                            <p class="text-sm text-gray-600">AWS, Azure, Google Cloud, Docker</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-xl text-center">
+                            <div class="text-3xl mb-3">📱</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Mobile</h4>
+                            <p class="text-sm text-gray-600">React Native, Flutter, iOS, Android</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-xl text-center">
+                            <div class="text-3xl mb-3">🔄</div>
+                            <h4 class="font-semibold text-gray-800 mb-2">DevOps</h4>
+                            <p class="text-sm text-gray-600">CI/CD, Jenkins, GitHub Actions, Kubernetes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-blue-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 section-reveal">
+                <span class="text-blue-600 font-semibold text-lg mb-4 block">My work</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Featured Projects</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-4xl text-white">
+                        🛒
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" data-editable>E-Commerce Platform</h3>
+                        <p class="text-gray-600 mb-4" data-editable>Full-featured e-commerce solution with payment integration, inventory management, and admin dashboard.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">React</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Node.js</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-4xl text-white">
+                        📊
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Analytics Dashboard</h3>
+                        <p class="text-gray-600 mb-4">Real-time analytics dashboard with interactive charts, data visualization, and reporting features.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Vue.js</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-4xl text-white">
+                        📱
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Mobile Banking App</h3>
+                        <p class="text-gray-600 mb-4">Secure mobile banking application with biometric authentication and real-time transactions.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">React Native</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Firebase</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">AWS</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-4xl text-white">
+                        🤖
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">AI Chatbot Platform</h3>
+                        <p class="text-gray-600 mb-4">Intelligent chatbot platform with natural language processing and machine learning capabilities.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">TensorFlow</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Docker</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-4xl text-white">
+                        🏥
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Healthcare Management</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive healthcare management system with patient records, appointments, and telemedicine.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Angular</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">.NET</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">SQL Server</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-4xl text-white">
+                        🎓
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Learning Management System</h3>
+                        <p class="text-gray-600 mb-4">Online learning platform with video streaming, assessments, and progress tracking for educational institutions.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Next.js</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">GraphQL</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Redis</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 section-reveal">
+                <span class="text-blue-600 font-semibold text-lg mb-4 block">Get in touch</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Let's Work Together</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Ready to bring your ideas to life? Let's discuss your project and create something amazing together.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="section-reveal">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-2xl text-blue-600">📧</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Email Address</h4>
+                                <p class="text-gray-600" data-editable>john.harold.reyes@email.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-2xl text-blue-600">📱</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Phone Number</h4>
+                                <p class="text-gray-600" data-editable>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-2xl text-blue-600">🌍</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Location</h4>
+                                <p class="text-gray-600">Available Worldwide (Remote)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-2xl text-blue-600">⏰</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Response Time</h4>
+                                <p class="text-gray-600">Within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold text-gray-900 mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
+                                💼
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
+                                🐙
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
+                                💻
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
+                                🐦
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-reveal">
+                    <div class="bg-blue-50 p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Send Me a Message</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">First Name</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300" placeholder="John" required>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Last Name</label>
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300" placeholder="john@example.com" required>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Project Type</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300">
+                                    <option>Web Development</option>
+                                    <option>Mobile App Development</option>
+                                    <option>Cloud Solutions</option>
+                                    <option>UI/UX Design</option>
+                                    <option>AI Integration</option>
+                                    <option>Consulting</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Project Budget</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300">
+                                    <option>$5,000 - $10,000</option>
+                                    <option>$10,000 - $25,000</option>
+                                    <option>$25,000 - $50,000</option>
+                                    <option>$50,000 - $100,000</option>
+                                    <option>$100,000+</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Project Details</label>
+                                <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300" placeholder="Tell me about your project requirements, timeline, and any specific features you need..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold transition duration-300 blue-glow">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="blue-gradient-dark text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center">
+                <h3 class="text-3xl font-bold mb-4" data-editable>John Harold Esmero Reyes</h3>
+                <p class="text-blue-200 mb-8 text-lg" data-editable>Professional Full-Stack Developer & Digital Innovator</p>
+                
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#" class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition duration-300">
+                        <span class="text-2xl">💼</span>
+                    </a>
+                    <a href="#" class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition duration-300">
+                        <span class="text-2xl">🐙</span>
+                    </a>
+                    <a href="#" class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition duration-300">
+                        <span class="text-2xl">💻</span>
+                    </a>
+                    <a href="#" class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition duration-300">
+                        <span class="text-2xl">📧</span>
+                    </a>
+                </div>
+                
+                <div class="border-t border-white/20 pt-8">
+                    <p class="text-blue-200">&copy; 2024 John Harold Esmero Reyes. All rights reserved. | Professional Portfolio</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Make content editable functionality
+        let isEditMode = false;
+        
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const editButton = document.getElementById('edit-toggle');
+            const editableElements = document.querySelectorAll('[data-editable]');
+            
+            if (isEditMode) {
+                editButton.textContent = '💾 Save Changes';
+                editButton.className = 'fixed top-4 right-4 z-50 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold transition duration-300 shadow-lg';
+                
+                editableElements.forEach(element => {
+                    element.contentEditable = true;
+                    element.style.outline = '2px dashed #3b82f6';
+                    element.style.outlineOffset = '4px';
+                    element.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+                    element.title = 'Click to edit this content';
+                });
+                
+                // Show edit instructions
+                showEditInstructions();
+            } else {
+                editButton.textContent = '✏️ Edit Content';
+                editButton.className = 'fixed top-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition duration-300 shadow-lg';
+                
+                editableElements.forEach(element => {
+                    element.contentEditable = false;
+                    element.style.outline = 'none';
+                    element.style.backgroundColor = 'transparent';
+                    element.title = '';
+                });
+                
+                // Hide edit instructions
+                hideEditInstructions();
+                
+                // Save changes notification
+                showSaveNotification();
+            }
+        }
+        
+        function showEditInstructions() {
+            const instructions = document.createElement('div');
+            instructions.id = 'edit-instructions';
+            instructions.className = 'fixed top-20 right-4 z-40 bg-white p-4 rounded-lg shadow-lg border-l-4 border-blue-600 max-w-sm';
+            instructions.innerHTML = `
+                <h4 class="font-bold text-gray-900 mb-2">✏️ Edit Mode Active</h4>
+                <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Click any highlighted text to edit</li>
+                    <li>• Change your name, skills, projects</li>
+                    <li>• Update contact information</li>
+                    <li>• Modify service descriptions</li>
+                    <li>• Click "Save Changes" when done</li>
+                </ul>
+            `;
+            document.body.appendChild(instructions);
+        }
+        
+        function hideEditInstructions() {
+            const instructions = document.getElementById('edit-instructions');
+            if (instructions) {
+                instructions.remove();
+            }
+        }
+        
+        function showSaveNotification() {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-green-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg';
+            notification.textContent = '✅ Changes saved successfully!';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate section reveals
+                    const revealElements = entry.target.querySelectorAll('.section-reveal');
+                    revealElements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.classList.add('animate');
+                        }, index * 100);
+                    });
+
+                    // Animate skill progress bars
+                    const skillItems = entry.target.querySelectorAll('.skill-item');
+                    skillItems.forEach((item, index) => {
+                        const progressBar = item.querySelector('.skill-progress');
+                        const width = progressBar.getAttribute('data-width');
+                        setTimeout(() => {
+                            progressBar.style.width = width;
+                        }, index * 200);
+                    });
+
+                    // Animate counters
+                    if (entry.target.id === 'about') {
+                        animateCounter(document.getElementById('experience-years'), 5);
+                        animateCounter(document.getElementById('projects-completed'), 150);
+                        animateCounter(document.getElementById('happy-clients'), 95);
+                        animateCounter(document.getElementById('awards-won'), 15);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Counter animation function
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                element.textContent = Math.floor(start);
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 16);
+        }
+
+        // Contact form handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = this.querySelector('input[placeholder="John"]').value;
+            const lastName = this.querySelector('input[placeholder="Doe"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const projectType = this.querySelectorAll('select')[0].value;
+            const budget = this.querySelectorAll('select')[1].value;
+            
+            alert(`Thank you, ${firstName} ${lastName}! Your ${projectType} project inquiry (Budget: ${budget}) has been received. I'll respond to ${email} within 24 hours with a detailed proposal and next steps.`);
+            this.reset();
+        });
+
+        // Typing effect for hero section
+        const typingElement = document.querySelector('.typing-effect');
+        const texts = [
+            'Professional Full-Stack Developer',
+            'Digital Innovation Specialist',
+            'Cloud Architecture Expert',
+            'Mobile App Developer'
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+
+            setTimeout(typeWriter, isDeleting ? 50 : 100);
+        }
+
+        // Start typing effect
+        setTimeout(typeWriter, 1000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b729678346b4d0',t:'MTc1OTk0MjQ4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
