@@ -5,966 +5,1942 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>John Harold Esmero Reyes</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
         
-        .blue-gradient {
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 25%, #60a5fa  50%, #93c5fd 75%, #dbeafe 100%);
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
-        .blue-gradient-dark {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+        .gradient-bg-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
         
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.1);
+        .gradient-bg-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-effect-strong {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .blue-glow {
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-        }
-        
-        .floating-animation {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        .slide-in-bottom {
-            animation: slideInBottom 0.8s ease-out;
-        }
-        
-        @keyframes slideInBottom {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .slide-in-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .typing-effect {
-            border-right: 2px solid #3b82f6;
-            animation: typing 4s steps(40) infinite, blink 1s infinite;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-        
-        @keyframes typing {
-            0%, 25% { width: 0; }
-            50%, 75% { width: 100%; }
-            100% { width: 0; }
+        .typing-animation {
+            border-right: 3px solid #60a5fa;
+            animation: blink 1s infinite;
         }
         
         @keyframes blink {
             0%, 50% { border-color: transparent; }
-            51%, 100% { border-color: #3b82f6; }
+            51%, 100% { border-color: #60a5fa; }
         }
         
-        .skill-progress {
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(96, 165, 250, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(96, 165, 250, 0.6); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .skill-bar {
             transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .card-hover:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
         }
         
-        .blue-text-gradient {
-            background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .settings-panel {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
-        .nav-link {
+        .settings-panel.open {
+            transform: translateX(0);
+        }
+        
+        .edit-mode .editable {
+            border: 2px dashed #60a5fa;
+            min-height: 30px;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-mode .editable:hover {
+            background: rgba(96, 165, 250, 0.1);
+            border-color: #3b82f6;
+        }
+        
+        .background-overlay {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             position: relative;
-            transition: color 0.3s ease;
         }
         
-        .nav-link::after {
+        .background-overlay::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            top: 0;
             left: 0;
-            width: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        
+        .background-overlay > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particle-float 8s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .theme-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .theme-option {
+            width: 60px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-option.active {
+            border-color: #60a5fa;
+            transform: scale(1.1);
+        }
+        
+        .theme-dark { background: linear-gradient(135deg, #1f2937, #374151); }
+        .theme-light { background: linear-gradient(135deg, #f9fafb, #e5e7eb); }
+        .theme-blue { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+        .theme-purple { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+        .theme-green { background: linear-gradient(135deg, #059669, #10b981); }
+        .theme-blue { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+        
+        .section-divider {
             height: 2px;
-            background: #3b82f6;
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, transparent, #60a5fa, transparent);
+            margin: 2rem 0;
         }
         
-        .nav-link:hover::after {
-            width: 100%;
+        .progress-ring {
+            transform: rotate(-90deg);
         }
         
-        .section-reveal {
+        .progress-ring-circle {
+            transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .testimonial-slider {
+            overflow: hidden;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #60a5fa;
+            border-color: #60a5fa;
+        }
+        
+        .portfolio-item {
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-item.hidden {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: scale(0.8);
+            pointer-events: none;
         }
         
-        .section-reveal.animate {
-            opacity: 1;
-            transform: translateY(0);
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+        }
+        
+        .color-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .color-option:hover,
+        .color-option.active {
+            border-color: white;
+            transform: scale(1.2);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            background: rgba(34, 197, 94, 0.9);
+            color: white;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
-    <!-- Edit Mode Toggle Button -->
-    <button id="edit-toggle" onclick="toggleEditMode()" class="fixed top-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition duration-300 shadow-lg">
-        ✏️ Edit Content
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Particles Background -->
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span id="notification-text">Settings saved successfully!</span>
+    </div>
+
+    <!-- Enhanced Settings Panel -->
+    <div id="settingsPanel" class="fixed top-0 right-0 h-full w-96 bg-gray-900 bg-opacity-95 backdrop-filter backdrop-blur-20 shadow-2xl z-50 settings-panel overflow-y-auto border-l border-gray-700">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Portfolio Studio</h3>
+                <button onclick="toggleSettings()" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-blue-400">Quick Actions</h4>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="toggleEditMode()" id="editModeBtn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-all text-sm">
+                        <i class="fas fa-edit mr-2"></i>Edit Mode
+                    </button>
+                    <button onclick="previewMode()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition-all text-sm">
+                        <i class="fas fa-eye mr-2"></i>Preview
+                    </button>
+                    <button onclick="exportSettings()" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition-all text-sm">
+                        <i class="fas fa-download mr-2"></i>Export
+                    </button>
+                    <button onclick="importSettings()" class="bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-lg transition-all text-sm">
+                        <i class="fas fa-upload mr-2"></i>Import
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Theme Gallery -->
+            <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-blue-400">Theme Gallery</h4>
+                <div class="theme-selector">
+                    <div class="theme-option theme-dark active" data-theme="dark" title="Dark Theme"></div>
+                    <div class="theme-option theme-light" data-theme="light" title="Light Theme"></div>
+                    <div class="theme-option theme-blue" data-theme="blue" title="Blue Theme"></div>
+                    <div class="theme-option theme-purple" data-theme="purple" title="Purple Theme"></div>
+                    <div class="theme-option theme-green" data-theme="green" title="Green Theme"></div>
+                    <div class="theme-option theme-pink" data-theme="pink" title="Pink Theme"></div>
+                </div>
+            </div>
+            
+            <!-- Color Palette -->
+            <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-blue-400">Color Palette</h4>
+                <div class="color-picker-grid">
+                    <div class="color-option active" style="background: #3b82f6" data-color="#3b82f6"></div>
+                    <div class="color-option" style="background: #8b5cf6" data-color="#8b5cf6"></div>
+                    <div class="color-option" style="background: #10b981" data-color="#10b981"></div>
+                    <div class="color-option" style="background: #f59e0b" data-color="#f59e0b"></div>
+                    <div class="color-option" style="background: #ef4444" data-color="#ef4444"></div>
+                    <div class="color-option" style="background: #ec4899" data-color="#ec4899"></div>
+                    <div class="color-option" style="background: #06b6d4" data-color="#06b6d4"></div>
+                    <div class="color-option" style="background: #84cc16" data-color="#84cc16"></div>
+                    <div class="color-option" style="background: #f97316" data-color="#f97316"></div>
+                    <div class="color-option" style="background: #6366f1" data-color="#6366f1"></div>
+                    <div class="color-option" style="background: #14b8a6" data-color="#14b8a6"></div>
+                    <div class="color-option" style="background: #a855f7" data-color="#a855f7"></div>
+                </div>
+                <input type="color" id="customColor" class="w-full mt-3 h-10 rounded-lg" value="#3b82f6">
+            </div>
+            
+            <!-- Background Manager -->
+            <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-blue-400">Background Manager</h4>
+                <div class="space-y-3">
+                    <div class="bg-gray-800 p-3 rounded-lg">
+                        <label class="block text-sm mb-2">Hero Section</label>
+                        <div class="flex gap-2">
+                            <input type="url" id="coverImage" placeholder="Image URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                            <button onclick="removeBackground('home')" class="bg-red-600 hover:bg-red-700 px-3 py-2 rounded text-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded-lg">
+                        <label class="block text-sm mb-2">Experience Section</label>
+                        <div class="flex gap-2">
+                            <input type="url" id="resumeBackground" placeholder="Image URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                            <button onclick="removeBackground('experience')" class="bg-red-600 hover:bg-red-700 px-3 py-2 rounded text-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded-lg">
+                        <label class="block text-sm mb-2">Testimonials Section</label>
+                        <div class="flex gap-2">
+                            <input type="url" id="testimonialsBackground" placeholder="Image URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                            <button onclick="removeBackground('testimonials')" class="bg-red-600 hover:bg-red-700 px-3 py-2 rounded text-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded-lg">
+                        <label class="block text-sm mb-2">Contact Section</label>
+                        <div class="flex gap-2">
+                            <input type="url" id="contactBackground" placeholder="Image URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                            <button onclick="removeBackground('contact')" class="bg-red-600 hover:bg-red-700 px-3 py-2 rounded text-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Media Assets -->
+            <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-blue-400">Media Assets</h4>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-sm mb-1">Profile Image</label>
+                        <input type="url" id="profileImage" placeholder="Profile Image URL" class="w-full p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1">Logo</label>
+                        <input type="url" id="logoImage" placeholder="Logo URL" class="w-full p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-1">Favicon</label>
+                        <input type="url" id="faviconImage" placeholder="Favicon URL" class="w-full p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Networks -->
+            <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-blue-400">Social Networks</h4>
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-linkedin text-blue-500 w-5"></i>
+                        <input type="url" id="linkedinUrl" placeholder="LinkedIn URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-github text-gray-400 w-5"></i>
+                        <input type="url" id="githubUrl" placeholder="GitHub URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-twitter text-blue-400 w-5"></i>
+                        <input type="url" id="twitterUrl" placeholder="Twitter URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-instagram text-pink-500 w-5"></i>
+                        <input type="url" id="instagramUrl" placeholder="Instagram URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-youtube text-red-500 w-5"></i>
+                        <input type="url" id="youtubeUrl" placeholder="YouTube URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-behance text-blue-600 w-5"></i>
+                        <input type="url" id="behanceUrl" placeholder="Behance URL" class="flex-1 p-2 bg-gray-700 rounded text-sm">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Animation Settings -->
+            <div class="mb-6">
+                <h4 class="font-semibold mb-3 text-blue-400">Animation Settings</h4>
+                <div class="space-y-3">
+                    <label class="flex items-center">
+                        <input type="checkbox" id="enableParticles" checked class="mr-2">
+                        <span class="text-sm">Floating Particles</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" id="enableTyping" checked class="mr-2">
+                        <span class="text-sm">Typing Animation</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" id="enableHover" checked class="mr-2">
+                        <span class="text-sm">Hover Effects</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="checkbox" id="enableGlow" checked class="mr-2">
+                        <span class="text-sm">Glow Effects</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Save & Load -->
+            <div class="space-y-3">
+                <button onclick="saveSettings()" class="w-full bg-green-600 hover:bg-green-700 px-4 py-3 rounded-lg transition-all flex items-center justify-center">
+                    <i class="fas fa-save mr-2"></i>
+                    <span>Save Configuration</span>
+                    <div id="saveSpinner" class="loading-spinner ml-2 hidden"></div>
+                </button>
+                <button onclick="loadSettings()" class="w-full bg-yellow-600 hover:bg-yellow-700 px-4 py-3 rounded-lg transition-all">
+                    <i class="fas fa-folder-open mr-2"></i>Load Configuration
+                </button>
+                <button onclick="resetSettings()" class="w-full bg-red-600 hover:bg-red-700 px-4 py-3 rounded-lg transition-all">
+                    <i class="fas fa-undo mr-2"></i>Reset to Default
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Settings Toggle -->
+    <button onclick="toggleSettings()" class="fixed top-6 right-6 z-40 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 p-4 rounded-full shadow-2xl pulse-glow transition-all">
+        <i class="fas fa-cog text-xl"></i>
     </button>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 glass-morphism">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-center py-4">
-                <div class="text-2xl font-bold">
-                    <span class="blue-text-gradient">JOHN HAROLD</span>
-                    <span class="text-blue-600 ml-2">REYES</span>
-                </div>
+    <!-- Enhanced Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-30 glass-effect-strong">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent editable" contenteditable="false" data-field="logo">JHR</div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-white hover:text-blue-300">Home</a>
-                    <a href="#about" class="nav-link text-white hover:text-blue-300">About</a>
-                    <a href="#services" class="nav-link text-white hover:text-blue-300">Services</a>
-                    <a href="#portfolio" class="nav-link text-white hover:text-blue-300">Portfolio</a>
-                    <a href="#skills" class="nav-link text-white hover:text-blue-300">Skills</a>
-                    <a href="#contact" class="nav-link text-white hover:text-blue-300">Contact</a>
+                    <a href="#home" class="hover:text-blue-400 transition-all duration-300 relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="hover:text-blue-400 transition-all duration-300 relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#skills" class="hover:text-blue-400 transition-all duration-300 relative group">
+                        Skills
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#services" class="hover:text-blue-400 transition-all duration-300 relative group">
+                        Services
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#experience" class="hover:text-blue-400 transition-all duration-300 relative group">
+                        Experience
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#portfolio" class="hover:text-blue-400 transition-all duration-300 relative group">
+                        Portfolio
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#testimonials" class="hover:text-blue-400 transition-all duration-300 relative group">
+                        Testimonials
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="hover:text-blue-400 transition-all duration-300 relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </div>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition duration-300 blue-glow">
-                    Hire Me
+                <button class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-full blue-gradient flex items-center justify-center relative overflow-hidden">
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-20 w-20 h-20 bg-white/20 rounded-full floating-animation"></div>
-        <div class="absolute top-40 right-32 w-16 h-16 bg-white/15 rounded-full floating-animation" style="animation-delay: -1s;"></div>
-        <div class="absolute bottom-32 left-1/3 w-12 h-12 bg-white/25 rounded-full floating-animation" style="animation-delay: -2s;"></div>
+    <!-- Enhanced Hero Section -->
+    <section id="home" class="min-h-full gradient-bg background-overlay flex items-center justify-center pt-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="mb-8 float-animation">
+                <img id="profileImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='125' cy='125' r='115' fill='url(%23grad1)' stroke='%2360a5fa' stroke-width='4'/%3E%3Ccircle cx='125' cy='100' r='35' fill='%23ffffff' opacity='0.9'/%3E%3Cpath d='M70 180 Q125 150 180 180 L180 210 Q125 180 70 210 Z' fill='%23ffffff' opacity='0.9'/%3E%3C/svg%3E" alt="Profile" class="w-60 h-60 rounded-full mx-auto mb-8 border-4 border-blue-400 shadow-2xl pulse-glow">
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent editable" contenteditable="false" data-field="name">John Harold Esmero Reyes</h1>
+            <div class="text-3xl md:text-4xl mb-8">
+                <span>I'm a </span>
+                <span id="typingText" class="text-blue-400 typing-animation font-bold editable" contenteditable="false" data-field="title">Full Stack Developer</span>
+            </div>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto opacity-90 editable" contenteditable="false" data-field="description">
+                Passionate developer creating amazing digital experiences with modern technologies and innovative solutions that transform ideas into reality.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#contact" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-10 py-4 rounded-full transition-all transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-paper-plane mr-2"></i>Hire Me
+                </a>
+                <a href="#portfolio" class="border-2 border-blue-400 hover:bg-blue-400 hover:text-gray-900 px-10 py-4 rounded-full transition-all transform hover:scale-105">
+                    <i class="fas fa-eye mr-2"></i>View Work
+                </a>
+            </div>
+        </div>
         
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10 pt-20">
-            <div class="slide-in-left text-white">
-                <div class="mb-6">
-                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-medium">👋 Welcome to my portfolio</span>
-                </div>
-                <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
-                    <span class="block" data-editable>John Harold</span>
-                    <span class="block text-blue-200" data-editable>Esmero Reyes</span>
-                </h1>
-                <div class="text-2xl mb-6">
-                    <span class="typing-effect" data-editable>Professional Full-Stack Developer</span>
-                </div>
-                <p class="text-xl text-blue-100 mb-8 leading-relaxed max-w-lg" data-editable>
-                    Crafting exceptional digital experiences with cutting-edge technology. 
-                    Transforming ideas into powerful, scalable solutions that drive business success.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition duration-300 blue-glow">
-                        View My Work
-                    </button>
-                    <button class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-full font-semibold transition duration-300">
-                        Download CV
-                    </button>
-                </div>
-            </div>
-            
-            <div class="slide-in-right flex justify-center">
-                <div class="relative">
-                    <div class="w-96 h-96 glass-morphism rounded-3xl p-8 floating-animation">
-                        <div class="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center text-8xl text-white">
-                            💼
-                        </div>
-                    </div>
-                    <!-- Decorative Elements -->
-                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center text-3xl animate-bounce">
-                        ⭐
-                    </div>
-                    <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-green-400 rounded-full flex items-center justify-center text-2xl animate-pulse">
-                        🚀
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-blue-400 rounded-full opacity-20 float-animation" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-20 right-10 w-16 h-16 bg-purple-400 rounded-full opacity-20 float-animation" style="animation-delay: -4s;"></div>
+        <div class="absolute top-1/2 left-20 w-12 h-12 bg-pink-400 rounded-full opacity-20 float-animation" style="animation-delay: -1s;"></div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 section-reveal">
-                <span class="text-blue-600 font-semibold text-lg mb-4 block">Get to know me</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">About Me</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+    <!-- Enhanced About Section -->
+    <section id="about" class="py-24 bg-gray-800 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">About Me</h2>
+                <div class="section-divider"></div>
             </div>
-            
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="section-reveal">
-                    <div class="bg-blue-50 rounded-3xl p-8">
-                        <div class="w-full h-80 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center text-6xl text-white">
-                            👨‍💻
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-semibold mb-6 editable" contenteditable="false" data-field="aboutTitle">Professional Developer & Designer</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed editable" contenteditable="false" data-field="aboutText">
+                        I am a passionate full-stack developer with over 5 years of experience in creating web applications and digital solutions. I specialize in modern JavaScript frameworks, responsive design, and user experience optimization. My goal is to bridge the gap between design and technology.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                        <div class="glass-effect p-4 rounded-lg">
+                            <span class="text-blue-400 font-semibold block">Name:</span>
+                            <span class="editable" contenteditable="false" data-field="personalName">John Harold Esmero Reyes</span>
+                        </div>
+                        <div class="glass-effect p-4 rounded-lg">
+                            <span class="text-blue-400 font-semibold block">Email:</span>
+                            <span class="editable" contenteditable="false" data-field="email">john@example.com</span>
+                        </div>
+                        <div class="glass-effect p-4 rounded-lg">
+                            <span class="text-blue-400 font-semibold block">Phone:</span>
+                            <span class="editable" contenteditable="false" data-field="phone">+1 234 567 8900</span>
+                        </div>
+                        <div class="glass-effect p-4 rounded-lg">
+                            <span class="text-blue-400 font-semibold block">Location:</span>
+                            <span class="editable" contenteditable="false" data-field="location">New York, USA</span>
+                        </div>
+                    </div>
+                    <a href="#" class="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-4 rounded-full transition-all transform hover:scale-105">
+                        <i class="fas fa-download mr-2"></i>Download CV
+                    </a>
+                </div>
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="text-center glass-effect p-8 rounded-2xl card-hover">
+                        <div class="text-5xl font-bold text-blue-400 mb-3" data-count="150">0</div>
+                        <div class="text-gray-300 text-lg">Projects Completed</div>
+                    </div>
+                    <div class="text-center glass-effect p-8 rounded-2xl card-hover">
+                        <div class="text-5xl font-bold text-blue-400 mb-3" data-count="50">0</div>
+                        <div class="text-gray-300 text-lg">Happy Clients</div>
+                    </div>
+                    <div class="text-center glass-effect p-8 rounded-2xl card-hover">
+                        <div class="text-5xl font-bold text-blue-400 mb-3" data-count="5">0</div>
+                        <div class="text-gray-300 text-lg">Years Experience</div>
+                    </div>
+                    <div class="text-center glass-effect p-8 rounded-2xl card-hover">
+                        <div class="text-5xl font-bold text-blue-400 mb-3" data-count="25">0</div>
+                        <div class="text-gray-300 text-lg">Awards Won</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Skills Section -->
+    <section id="skills" class="py-24 gradient-bg-2 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 text-white">My Skills</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="glass-effect-strong p-8 rounded-2xl">
+                    <h3 class="text-3xl font-semibold mb-8 text-center">Technical Skills</h3>
+                    <div class="space-y-8" id="technicalSkills">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="text-lg font-medium editable" contenteditable="false" data-field="skill1">JavaScript</span>
+                                <span class="text-blue-300 font-bold">90%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-4 overflow-hidden">
+                                <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-4 rounded-full skill-bar" style="width: 0%" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="text-lg font-medium editable" contenteditable="false" data-field="skill2">React</span>
+                                <span class="text-blue-300 font-bold">85%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-4 overflow-hidden">
+                                <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-4 rounded-full skill-bar" style="width: 0%" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="text-lg font-medium editable" contenteditable="false" data-field="skill3">Node.js</span>
+                                <span class="text-blue-300 font-bold">80%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-4 overflow-hidden">
+                                <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-4 rounded-full skill-bar" style="width: 0%" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-3">
+                                <span class="text-lg font-medium editable" contenteditable="false" data-field="skill4">Python</span>
+                                <span class="text-blue-300 font-bold">75%</span>
+                            </div>
+                            <div class="bg-gray-700 rounded-full h-4 overflow-hidden">
+                                <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-4 rounded-full skill-bar" style="width: 0%" data-width="75"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="section-reveal">
-                    <h3 class="text-3xl font-bold text-gray-900 mb-6" data-editable>Professional Developer & Digital Innovator</h3>
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed" data-editable>
-                        I'm a passionate full-stack developer with over 5 years of experience creating 
-                        exceptional digital solutions. My expertise spans across modern web technologies, 
-                        mobile development, and cloud architecture.
-                    </p>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-editable>
-                        I believe in writing clean, efficient code and creating user experiences that 
-                        not only look great but also perform flawlessly. Every project is an opportunity 
-                        to push boundaries and deliver excellence.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="text-center p-6 bg-blue-50 rounded-xl">
-                            <div class="text-3xl font-bold text-blue-600 mb-2" id="experience-years">0</div>
-                            <div class="text-gray-600">Years Experience</div>
+                <div class="glass-effect-strong p-8 rounded-2xl">
+                    <h3 class="text-3xl font-semibold mb-8 text-center">Professional Skills</h3>
+                    <div class="grid grid-cols-2 gap-8" id="professionalSkills">
+                        <div class="text-center">
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <svg class="w-32 h-32 progress-ring">
+                                    <circle cx="64" cy="64" r="56" stroke="#374151" stroke-width="8" fill="none"/>
+                                    <circle cx="64" cy="64" r="56" stroke="url(#gradient1)" stroke-width="8" fill="none" 
+                                            stroke-dasharray="351.86" stroke-dashoffset="351.86" class="progress-ring-circle" data-percent="95"/>
+                                    <defs>
+                                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#60a5fa"/>
+                                            <stop offset="100%" style="stop-color:#a855f7"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-2xl font-bold">95%</span>
+                                </div>
+                            </div>
+                            <div class="text-lg font-medium editable" contenteditable="false" data-field="profSkill1">Communication</div>
                         </div>
-                        <div class="text-center p-6 bg-blue-50 rounded-xl">
-                            <div class="text-3xl font-bold text-blue-600 mb-2" id="projects-completed">0</div>
-                            <div class="text-gray-600">Projects Completed</div>
+                        <div class="text-center">
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <svg class="w-32 h-32 progress-ring">
+                                    <circle cx="64" cy="64" r="56" stroke="#374151" stroke-width="8" fill="none"/>
+                                    <circle cx="64" cy="64" r="56" stroke="url(#gradient2)" stroke-width="8" fill="none" 
+                                            stroke-dasharray="351.86" stroke-dashoffset="351.86" class="progress-ring-circle" data-percent="90"/>
+                                    <defs>
+                                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#10b981"/>
+                                            <stop offset="100%" style="stop-color:#06b6d4"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-2xl font-bold">90%</span>
+                                </div>
+                            </div>
+                            <div class="text-lg font-medium editable" contenteditable="false" data-field="profSkill2">Team Work</div>
                         </div>
-                        <div class="text-center p-6 bg-blue-50 rounded-xl">
-                            <div class="text-3xl font-bold text-blue-600 mb-2" id="happy-clients">0</div>
-                            <div class="text-gray-600">Happy Clients</div>
+                        <div class="text-center">
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <svg class="w-32 h-32 progress-ring">
+                                    <circle cx="64" cy="64" r="56" stroke="#374151" stroke-width="8" fill="none"/>
+                                    <circle cx="64" cy="64" r="56" stroke="url(#gradient3)" stroke-width="8" fill="none" 
+                                            stroke-dasharray="351.86" stroke-dashoffset="351.86" class="progress-ring-circle" data-percent="88"/>
+                                    <defs>
+                                        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f59e0b"/>
+                                            <stop offset="100%" style="stop-color:#ef4444"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-2xl font-bold">88%</span>
+                                </div>
+                            </div>
+                            <div class="text-lg font-medium editable" contenteditable="false" data-field="profSkill3">Problem Solving</div>
                         </div>
-                        <div class="text-center p-6 bg-blue-50 rounded-xl">
-                            <div class="text-3xl font-bold text-blue-600 mb-2" id="awards-won">0</div>
-                            <div class="text-gray-600">Awards Won</div>
+                        <div class="text-center">
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <svg class="w-32 h-32 progress-ring">
+                                    <circle cx="64" cy="64" r="56" stroke="#374151" stroke-width="8" fill="none"/>
+                                    <circle cx="64" cy="64" r="56" stroke="url(#gradient4)" stroke-width="8" fill="none" 
+                                            stroke-dasharray="351.86" stroke-dashoffset="351.86" class="progress-ring-circle" data-percent="92"/>
+                                    <defs>
+                                        <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#ec4899"/>
+                                            <stop offset="100%" style="stop-color:#8b5cf6"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-2xl font-bold">92%</span>
+                                </div>
+                            </div>
+                            <div class="text-lg font-medium editable" contenteditable="false" data-field="profSkill4">Creativity</div>
                         </div>
                     </div>
-                    
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition duration-300">
-                        Learn More About Me
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Services Section -->
+    <section id="services" class="py-24 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">My Services</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="servicesGrid">
+                <div class="glass-effect p-8 rounded-2xl card-hover group">
+                    <div class="text-5xl text-blue-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 editable" contenteditable="false" data-field="service1Title">Web Development</h3>
+                    <p class="text-gray-300 mb-6 editable" contenteditable="false" data-field="service1Desc">Creating responsive and modern websites using the latest technologies and best practices for optimal performance.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                    </div>
+                </div>
+                <div class="glass-effect p-8 rounded-2xl card-hover group">
+                    <div class="text-5xl text-green-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 editable" contenteditable="false" data-field="service2Title">Mobile Apps</h3>
+                    <p class="text-gray-300 mb-6 editable" contenteditable="false" data-field="service2Desc">Developing cross-platform mobile applications with native performance and exceptional user experience.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-600 px-3 py-1 rounded-full text-sm">React Native</span>
+                        <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Flutter</span>
+                        <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Swift</span>
+                    </div>
+                </div>
+                <div class="glass-effect p-8 rounded-2xl card-hover group">
+                    <div class="text-5xl text-purple-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 editable" contenteditable="false" data-field="service3Title">UI/UX Design</h3>
+                    <p class="text-gray-300 mb-6 editable" contenteditable="false" data-field="service3Desc">Designing intuitive and beautiful user interfaces that provide excellent user experiences and drive engagement.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Figma</span>
+                        <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Adobe XD</span>
+                        <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Sketch</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Experience Section -->
+    <section id="experience" class="py-24 gradient-bg-3 background-overlay">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 text-white">Experience</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="max-w-5xl mx-auto">
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 to-purple-500"></div>
+                    <div class="space-y-16" id="experienceTimeline">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-12 text-right">
+                                <div class="glass-effect-strong p-8 rounded-2xl card-hover">
+                                    <h3 class="text-2xl font-semibold mb-2 editable" contenteditable="false" data-field="exp1Title">Senior Full Stack Developer</h3>
+                                    <p class="text-blue-300 text-lg mb-2 editable" contenteditable="false" data-field="exp1Company">Tech Solutions Inc.</p>
+                                    <p class="text-sm text-gray-300 mb-4 editable" contenteditable="false" data-field="exp1Period">2021 - Present</p>
+                                    <p class="text-gray-300 editable" contenteditable="false" data-field="exp1Desc">Leading development teams and architecting scalable web applications using modern technologies. Mentoring junior developers and implementing best practices.</p>
+                                </div>
+                            </div>
+                            <div class="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full border-4 border-white absolute left-1/2 transform -translate-x-1/2 shadow-lg"></div>
+                            <div class="w-1/2 pl-12"></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-12"></div>
+                            <div class="w-6 h-6 bg-gradient-to-r from-green-400 to-blue-500 rounded-full border-4 border-white absolute left-1/2 transform -translate-x-1/2 shadow-lg"></div>
+                            <div class="w-1/2 pl-12">
+                                <div class="glass-effect-strong p-8 rounded-2xl card-hover">
+                                    <h3 class="text-2xl font-semibold mb-2 editable" contenteditable="false" data-field="exp2Title">Frontend Developer</h3>
+                                    <p class="text-blue-300 text-lg mb-2 editable" contenteditable="false" data-field="exp2Company">Digital Agency</p>
+                                    <p class="text-sm text-gray-300 mb-4 editable" contenteditable="false" data-field="exp2Period">2019 - 2021</p>
+                                    <p class="text-gray-300 editable" contenteditable="false" data-field="exp2Desc">Developed responsive web applications and collaborated with design teams to create engaging user experiences. Specialized in React and modern CSS frameworks.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-12 text-right">
+                                <div class="glass-effect-strong p-8 rounded-2xl card-hover">
+                                    <h3 class="text-2xl font-semibold mb-2 editable" contenteditable="false" data-field="exp3Title">Junior Developer</h3>
+                                    <p class="text-blue-300 text-lg mb-2 editable" contenteditable="false" data-field="exp3Company">StartupXYZ</p>
+                                    <p class="text-sm text-gray-300 mb-4 editable" contenteditable="false" data-field="exp3Period">2018 - 2019</p>
+                                    <p class="text-gray-300 editable" contenteditable="false" data-field="exp3Desc">Started my professional journey building web applications and learning industry best practices. Contributed to multiple successful product launches.</p>
+                                </div>
+                            </div>
+                            <div class="w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full border-4 border-white absolute left-1/2 transform -translate-x-1/2 shadow-lg"></div>
+                            <div class="w-1/2 pl-12"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Portfolio Section -->
+    <section id="portfolio" class="py-24 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">My Portfolio</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <!-- Portfolio Filter -->
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="design">UI/UX Design</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolioGrid">
+                <div class="glass-effect rounded-2xl overflow-hidden card-hover portfolio-item" data-category="web">
+                    <div class="h-64 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-laptop-code text-6xl text-white"></i>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                            <button onclick="openProjectModal('project1')" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold">View Details</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-3 editable" contenteditable="false" data-field="project1Title">E-Commerce Platform</h3>
+                        <p class="text-gray-300 mb-4 editable" contenteditable="false" data-field="project1Desc">A full-featured e-commerce platform built with React, Node.js, and MongoDB</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">React</span>
+                            <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Node.js</span>
+                            <span class="bg-yellow-600 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold">View Project →</a>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-2xl overflow-hidden card-hover portfolio-item" data-category="mobile">
+                    <div class="h-64 bg-gradient-to-br from-green-500 via-teal-600 to-blue-600 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-mobile-alt text-6xl text-white"></i>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                            <button onclick="openProjectModal('project2')" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold">View Details</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-3 editable" contenteditable="false" data-field="project2Title">Mobile Banking App</h3>
+                        <p class="text-gray-300 mb-4 editable" contenteditable="false" data-field="project2Desc">Secure mobile banking application with biometric authentication and real-time transactions</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">React Native</span>
+                            <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Firebase</span>
+                            <span class="bg-red-600 px-3 py-1 rounded-full text-sm">Redux</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold">View Project →</a>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-2xl overflow-hidden card-hover portfolio-item" data-category="web">
+                    <div class="h-64 bg-gradient-to-br from-purple-500 via-pink-600 to-red-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-chart-line text-6xl text-white"></i>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                            <button onclick="openProjectModal('project3')" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold">View Details</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-3 editable" contenteditable="false" data-field="project3Title">Analytics Dashboard</h3>
+                        <p class="text-gray-300 mb-4 editable" contenteditable="false" data-field="project3Desc">Real-time analytics dashboard with interactive data visualization and reporting</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-orange-600 px-3 py-1 rounded-full text-sm">Vue.js</span>
+                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">D3.js</span>
+                            <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Express</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold">View Project →</a>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-2xl overflow-hidden card-hover portfolio-item" data-category="design">
+                    <div class="h-64 bg-gradient-to-br from-yellow-500 via-orange-600 to-red-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-palette text-6xl text-white"></i>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                            <button onclick="openProjectModal('project4')" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold">View Details</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-3 editable" contenteditable="false" data-field="project4Title">Brand Identity Design</h3>
+                        <p class="text-gray-300 mb-4 editable" contenteditable="false" data-field="project4Desc">Complete brand identity design including logo, color palette, and style guide</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-pink-600 px-3 py-1 rounded-full text-sm">Figma</span>
+                            <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Illustrator</span>
+                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">Photoshop</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold">View Project →</a>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-2xl overflow-hidden card-hover portfolio-item" data-category="mobile">
+                    <div class="h-64 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-gamepad text-6xl text-white"></i>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                            <button onclick="openProjectModal('project5')" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold">View Details</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-3 editable" contenteditable="false" data-field="project5Title">Gaming Mobile App</h3>
+                        <p class="text-gray-300 mb-4 editable" contenteditable="false" data-field="project5Desc">Multiplayer gaming app with real-time gameplay and social features</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Unity</span>
+                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">C#</span>
+                            <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Photon</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold">View Project →</a>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-2xl overflow-hidden card-hover portfolio-item" data-category="web">
+                    <div class="h-64 bg-gradient-to-br from-teal-500 via-cyan-600 to-blue-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-shopping-cart text-6xl text-white"></i>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                            <button onclick="openProjectModal('project6')" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold">View Details</button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-3 editable" contenteditable="false" data-field="project6Title">Online Marketplace</h3>
+                        <p class="text-gray-300 mb-4 editable" contenteditable="false" data-field="project6Desc">Multi-vendor marketplace with advanced search and payment integration</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-red-600 px-3 py-1 rounded-full text-sm">Laravel</span>
+                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">MySQL</span>
+                            <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Stripe</span>
+                        </div>
+                        <a href="#" class="text-blue-400 hover:text-blue-300 font-semibold">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Testimonials Section -->
+    <section id="testimonials" class="py-24 gradient-bg background-overlay">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 text-white">What Clients Say</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="max-w-6xl mx-auto">
+                <div class="testimonial-slider">
+                    <div class="testimonial-track" id="testimonialTrack">
+                        <div class="min-w-full grid md:grid-cols-2 gap-8">
+                            <div class="glass-effect-strong p-8 rounded-2xl">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-user text-white text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold editable" contenteditable="false" data-field="testimonial1Name">Sarah Johnson</h4>
+                                        <p class="text-blue-300 editable" contenteditable="false" data-field="testimonial1Role">CEO, StartupXYZ</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 text-lg mb-6 editable" contenteditable="false" data-field="testimonial1Text">"John delivered an exceptional website that exceeded our expectations. His attention to detail and technical expertise are outstanding. The project was completed on time and within budget."</p>
+                                <div class="flex text-yellow-400 text-xl">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="glass-effect-strong p-8 rounded-2xl">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-user text-white text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold editable" contenteditable="false" data-field="testimonial2Name">Mike Chen</h4>
+                                        <p class="text-blue-300 editable" contenteditable="false" data-field="testimonial2Role">CTO, TechCorp</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 text-lg mb-6 editable" contenteditable="false" data-field="testimonial2Text">"Working with John was a pleasure. He's professional, reliable, and delivers high-quality work on time. His problem-solving skills and creativity are impressive. Highly recommended!"</p>
+                                <div class="flex text-yellow-400 text-xl">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="min-w-full grid md:grid-cols-2 gap-8">
+                            <div class="glass-effect-strong p-8 rounded-2xl">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-user text-white text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold editable" contenteditable="false" data-field="testimonial3Name">Emily Rodriguez</h4>
+                                        <p class="text-blue-300 editable" contenteditable="false" data-field="testimonial3Role">Marketing Director, Creative Agency</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 text-lg mb-6 editable" contenteditable="false" data-field="testimonial3Text">"John's design skills are exceptional. He created a beautiful and functional website that perfectly represents our brand. The user experience is smooth and engaging."</p>
+                                <div class="flex text-yellow-400 text-xl">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="glass-effect-strong p-8 rounded-2xl">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-16 h-16 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-user text-white text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold editable" contenteditable="false" data-field="testimonial4Name">David Kim</h4>
+                                        <p class="text-blue-300 editable" contenteditable="false" data-field="testimonial4Role">Founder, E-commerce Store</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-300 text-lg mb-6 editable" contenteditable="false" data-field="testimonial4Text">"The mobile app John developed for us has been a game-changer. Our sales increased by 40% after launch. His technical expertise and business understanding are remarkable."</p>
+                                <div class="flex text-yellow-400 text-xl">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-8 space-x-4">
+                    <button onclick="previousTestimonial()" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button onclick="nextTestimonial()" class="bg-white bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all">
+                        <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-blue-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 section-reveal">
-                <span class="text-blue-600 font-semibold text-lg mb-4 block">What I offer</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">My Services</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+    <!-- Enhanced Certificates Section -->
+    <section id="certificates" class="py-24 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Certificates & Awards</h2>
+                <div class="section-divider"></div>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
-                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        🌐
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8" id="certificatesGrid">
+                <div class="glass-effect p-8 rounded-2xl text-center card-hover group">
+                    <div class="text-5xl text-yellow-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-certificate"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4" data-editable>Web Development</h3>
-                    <p class="text-gray-600 mb-6" data-editable>Custom web applications built with modern frameworks like React, Vue.js, and Angular. Responsive, fast, and user-friendly.</p>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li>• Frontend Development</li>
-                        <li>• Backend APIs</li>
-                        <li>• Database Design</li>
-                        <li>• Performance Optimization</li>
-                    </ul>
+                    <h3 class="text-xl font-semibold mb-3 editable" contenteditable="false" data-field="cert1">AWS Certified Solutions Architect</h3>
+                    <p class="text-blue-300 mb-2 editable" contenteditable="false" data-field="cert1Year">2023</p>
+                    <p class="text-gray-400 text-sm">Amazon Web Services</p>
                 </div>
-                
-                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
-                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        📱
+                <div class="glass-effect p-8 rounded-2xl text-center card-hover group">
+                    <div class="text-5xl text-blue-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-medal"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4" data-editable>Mobile Development</h3>
-                    <p class="text-gray-600 mb-6" data-editable>Cross-platform mobile applications using React Native and Flutter. Native performance with shared codebase.</p>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li>• iOS & Android Apps</li>
-                        <li>• Cross-platform Solutions</li>
-                        <li>• App Store Deployment</li>
-                        <li>• Maintenance & Updates</li>
-                    </ul>
+                    <h3 class="text-xl font-semibold mb-3 editable" contenteditable="false" data-field="cert2">React Expert Certification</h3>
+                    <p class="text-blue-300 mb-2 editable" contenteditable="false" data-field="cert2Year">2022</p>
+                    <p class="text-gray-400 text-sm">Meta (Facebook)</p>
                 </div>
-                
-                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
-                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        ☁️
+                <div class="glass-effect p-8 rounded-2xl text-center card-hover group">
+                    <div class="text-5xl text-green-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-trophy"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4" data-editable>Cloud Solutions</h3>
-                    <p class="text-gray-600 mb-6" data-editable>Scalable cloud architecture using AWS, Azure, and Google Cloud. DevOps, CI/CD, and infrastructure management.</p>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li>• Cloud Architecture</li>
-                        <li>• DevOps & CI/CD</li>
-                        <li>• Server Management</li>
-                        <li>• Security Implementation</li>
-                    </ul>
+                    <h3 class="text-xl font-semibold mb-3 editable" contenteditable="false" data-field="cert3">Google Analytics Certified</h3>
+                    <p class="text-blue-300 mb-2 editable" contenteditable="false" data-field="cert3Year">2022</p>
+                    <p class="text-gray-400 text-sm">Google</p>
                 </div>
-                
-                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
-                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        🎨
+                <div class="glass-effect p-8 rounded-2xl text-center card-hover group">
+                    <div class="text-5xl text-purple-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-award"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">UI/UX Design</h3>
-                    <p class="text-gray-600 mb-6">User-centered design approach creating intuitive interfaces that enhance user experience and drive engagement.</p>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li>• User Interface Design</li>
-                        <li>• User Experience Research</li>
-                        <li>• Prototyping</li>
-                        <li>• Design Systems</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
-                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        🤖
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">AI Integration</h3>
-                    <p class="text-gray-600 mb-6">Integrate artificial intelligence and machine learning capabilities into your applications for enhanced functionality.</p>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li>• Machine Learning Models</li>
-                        <li>• AI-powered Features</li>
-                        <li>• Data Analytics</li>
-                        <li>• Automation Solutions</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white p-8 rounded-2xl card-hover section-reveal">
-                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl mb-6">
-                        💼
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Consulting</h3>
-                    <p class="text-gray-600 mb-6">Technical consulting and code reviews to help optimize your existing projects and guide technology decisions.</p>
-                    <ul class="text-sm text-gray-500 space-y-2">
-                        <li>• Technical Audits</li>
-                        <li>• Code Reviews</li>
-                        <li>• Architecture Planning</li>
-                        <li>• Team Mentoring</li>
-                    </ul>
+                    <h3 class="text-xl font-semibold mb-3 editable" contenteditable="false" data-field="cert4">Certified Scrum Master</h3>
+                    <p class="text-blue-300 mb-2 editable" contenteditable="false" data-field="cert4Year">2021</p>
+                    <p class="text-gray-400 text-sm">Scrum Alliance</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 section-reveal">
-                <span class="text-blue-600 font-semibold text-lg mb-4 block">My expertise</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Technical Skills</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+    <!-- Enhanced Contact Section -->
+    <section id="contact" class="py-24 gradient-bg background-overlay">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4 text-white">Get In Touch</h2>
+                <div class="section-divider"></div>
+                <p class="text-xl text-gray-200 max-w-2xl mx-auto">Ready to start your next project? Let's work together to create something amazing!</p>
             </div>
-            
             <div class="grid lg:grid-cols-2 gap-16">
-                <div class="section-reveal">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Programming Languages & Frameworks</h3>
+                <div class="glass-effect-strong p-8 rounded-2xl">
+                    <h3 class="text-3xl font-semibold mb-8">Contact Information</h3>
                     <div class="space-y-6">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-3">
-                                <span class="font-semibold text-gray-800">JavaScript / TypeScript</span>
-                                <span class="text-blue-600 font-semibold">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-3">
-                                <span class="font-semibold text-gray-800">React / Next.js</span>
-                                <span class="text-blue-600 font-semibold">92%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="92%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-3">
-                                <span class="font-semibold text-gray-800">Node.js / Express</span>
-                                <span class="text-blue-600 font-semibold">88%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="88%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-3">
-                                <span class="font-semibold text-gray-800">Python / Django</span>
-                                <span class="text-blue-600 font-semibold">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-3">
-                                <span class="font-semibold text-gray-800">Cloud & DevOps</span>
-                                <span class="text-blue-600 font-semibold">82%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-3">
-                                <div class="skill-progress bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" style="width: 0%" data-width="82%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="section-reveal">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Tools & Technologies</h3>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bg-blue-50 p-6 rounded-xl text-center">
-                            <div class="text-3xl mb-3">⚛️</div>
-                            <h4 class="font-semibold text-gray-800 mb-2">Frontend</h4>
-                            <p class="text-sm text-gray-600">React, Vue.js, Angular, HTML5, CSS3, Tailwind</p>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-6 rounded-xl text-center">
-                            <div class="text-3xl mb-3">🔧</div>
-                            <h4 class="font-semibold text-gray-800 mb-2">Backend</h4>
-                            <p class="text-sm text-gray-600">Node.js, Python, PHP, Java, .NET</p>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-6 rounded-xl text-center">
-                            <div class="text-3xl mb-3">🗄️</div>
-                            <h4 class="font-semibold text-gray-800 mb-2">Database</h4>
-                            <p class="text-sm text-gray-600">MongoDB, PostgreSQL, MySQL, Redis</p>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-6 rounded-xl text-center">
-                            <div class="text-3xl mb-3">☁️</div>
-                            <h4 class="font-semibold text-gray-800 mb-2">Cloud</h4>
-                            <p class="text-sm text-gray-600">AWS, Azure, Google Cloud, Docker</p>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-6 rounded-xl text-center">
-                            <div class="text-3xl mb-3">📱</div>
-                            <h4 class="font-semibold text-gray-800 mb-2">Mobile</h4>
-                            <p class="text-sm text-gray-600">React Native, Flutter, iOS, Android</p>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-6 rounded-xl text-center">
-                            <div class="text-3xl mb-3">🔄</div>
-                            <h4 class="font-semibold text-gray-800 mb-2">DevOps</h4>
-                            <p class="text-sm text-gray-600">CI/CD, Jenkins, GitHub Actions, Kubernetes</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-blue-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 section-reveal">
-                <span class="text-blue-600 font-semibold text-lg mb-4 block">My work</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Featured Projects</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
-                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-4xl text-white">
-                        🛒
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3" data-editable>E-Commerce Platform</h3>
-                        <p class="text-gray-600 mb-4" data-editable>Full-featured e-commerce solution with payment integration, inventory management, and admin dashboard.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">React</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Node.js</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">MongoDB</span>
-                        </div>
-                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
-                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-4xl text-white">
-                        📊
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Analytics Dashboard</h3>
-                        <p class="text-gray-600 mb-4">Real-time analytics dashboard with interactive charts, data visualization, and reporting features.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Vue.js</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Python</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
-                        </div>
-                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
-                    <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-4xl text-white">
-                        📱
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Mobile Banking App</h3>
-                        <p class="text-gray-600 mb-4">Secure mobile banking application with biometric authentication and real-time transactions.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">React Native</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Firebase</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">AWS</span>
-                        </div>
-                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
-                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-4xl text-white">
-                        🤖
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">AI Chatbot Platform</h3>
-                        <p class="text-gray-600 mb-4">Intelligent chatbot platform with natural language processing and machine learning capabilities.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Python</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">TensorFlow</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Docker</span>
-                        </div>
-                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
-                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-4xl text-white">
-                        🏥
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Healthcare Management</h3>
-                        <p class="text-gray-600 mb-4">Comprehensive healthcare management system with patient records, appointments, and telemedicine.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Angular</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">.NET</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">SQL Server</span>
-                        </div>
-                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-2xl overflow-hidden card-hover section-reveal">
-                    <div class="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-4xl text-white">
-                        🎓
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Learning Management System</h3>
-                        <p class="text-gray-600 mb-4">Online learning platform with video streaming, assessments, and progress tracking for educational institutions.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Next.js</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">GraphQL</span>
-                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Redis</span>
-                        </div>
-                        <button class="text-blue-600 hover:text-blue-700 font-semibold">View Project →</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 section-reveal">
-                <span class="text-blue-600 font-semibold text-lg mb-4 block">Get in touch</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Let's Work Together</h2>
-                <div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Ready to bring your ideas to life? Let's discuss your project and create something amazing together.</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-16">
-                <div class="section-reveal">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Contact Information</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-2xl text-blue-600">📧</span>
+                        <div class="flex items-center p-4 bg-white bg-opacity-10 rounded-lg">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">Email Address</h4>
-                                <p class="text-gray-600" data-editable>john.harold.reyes@email.com</p>
+                                <p class="text-gray-300 text-sm">Email</p>
+                                <p class="text-lg editable" contenteditable="false" data-field="contactEmail">john@example.com</p>
                             </div>
                         </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-2xl text-blue-600">📱</span>
+                        <div class="flex items-center p-4 bg-white bg-opacity-10 rounded-lg">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">Phone Number</h4>
-                                <p class="text-gray-600" data-editable>+1 (555) 123-4567</p>
+                                <p class="text-gray-300 text-sm">Phone</p>
+                                <p class="text-lg editable" contenteditable="false" data-field="contactPhone">+1 234 567 8900</p>
                             </div>
                         </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-2xl text-blue-600">🌍</span>
+                        <div class="flex items-center p-4 bg-white bg-opacity-10 rounded-lg">
+                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-900">Location</h4>
-                                <p class="text-gray-600">Available Worldwide (Remote)</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
-                                <span class="text-2xl text-blue-600">⏰</span>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Response Time</h4>
-                                <p class="text-gray-600">Within 24 hours</p>
+                                <p class="text-gray-300 text-sm">Location</p>
+                                <p class="text-lg editable" contenteditable="false" data-field="contactAddress">New York, USA</p>
                             </div>
                         </div>
                     </div>
-                    
                     <div class="mt-8">
-                        <h4 class="font-semibold text-gray-900 mb-4">Follow Me</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
-                                💼
+                        <h4 class="text-xl font-semibold mb-4">Follow Me</h4>
+                        <div class="flex space-x-4" id="socialLinks">
+                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-all transform hover:scale-110">
+                                <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
-                                🐙
+                            <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-all transform hover:scale-110">
+                                <i class="fab fa-github"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
-                                💻
+                            <a href="#" class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-all transform hover:scale-110">
+                                <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="#" class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
-                                🐦
+                            <a href="#" class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-all transform hover:scale-110">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-all transform hover:scale-110">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all transform hover:scale-110">
+                                <i class="fab fa-behance"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="section-reveal">
-                    <div class="bg-blue-50 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Send Me a Message</h3>
-                        <form id="contact-form" class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-gray-700 font-semibold mb-2">First Name</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300" placeholder="John" required>
-                                </div>
-                                <div>
-                                    <label class="block text-gray-700 font-semibold mb-2">Last Name</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300" placeholder="Doe" required>
-                                </div>
-                            </div>
-                            
+                <div class="glass-effect-strong p-8 rounded-2xl">
+                    <h3 class="text-3xl font-semibold mb-8">Send Message</h3>
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-gray-700 font-semibold mb-2">Email Address</label>
-                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300" placeholder="john@example.com" required>
+                                <label class="block text-sm font-medium mb-2">Your Name</label>
+                                <input type="text" required class="w-full p-4 bg-white bg-opacity-10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
                             </div>
-                            
                             <div>
-                                <label class="block text-gray-700 font-semibold mb-2">Project Type</label>
-                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300">
-                                    <option>Web Development</option>
-                                    <option>Mobile App Development</option>
-                                    <option>Cloud Solutions</option>
-                                    <option>UI/UX Design</option>
-                                    <option>AI Integration</option>
-                                    <option>Consulting</option>
-                                    <option>Other</option>
-                                </select>
+                                <label class="block text-sm font-medium mb-2">Your Email</label>
+                                <input type="email" required class="w-full p-4 bg-white bg-opacity-10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
                             </div>
-                            
-                            <div>
-                                <label class="block text-gray-700 font-semibold mb-2">Project Budget</label>
-                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300">
-                                    <option>$5,000 - $10,000</option>
-                                    <option>$10,000 - $25,000</option>
-                                    <option>$25,000 - $50,000</option>
-                                    <option>$50,000 - $100,000</option>
-                                    <option>$100,000+</option>
-                                </select>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-gray-700 font-semibold mb-2">Project Details</label>
-                                <textarea rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white transition duration-300" placeholder="Tell me about your project requirements, timeline, and any specific features you need..." required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold transition duration-300 blue-glow">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Subject</label>
+                            <input type="text" required class="w-full p-4 bg-white bg-opacity-10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Project Type</label>
+                            <select class="w-full p-4 bg-white bg-opacity-10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
+                                <option value="">Select Project Type</option>
+                                <option value="web">Web Development</option>
+                                <option value="mobile">Mobile App</option>
+                                <option value="design">UI/UX Design</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Budget Range</label>
+                            <select class="w-full p-4 bg-white bg-opacity-10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
+                                <option value="">Select Budget Range</option>
+                                <option value="1000-5000">$1,000 - $5,000</option>
+                                <option value="5000-10000">$5,000 - $10,000</option>
+                                <option value="10000-25000">$10,000 - $25,000</option>
+                                <option value="25000+">$25,000+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Your Message</label>
+                            <textarea rows="5" required class="w-full p-4 bg-white bg-opacity-10 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 py-4 rounded-lg transition-all transform hover:scale-105 font-semibold text-lg">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="blue-gradient-dark text-white py-16">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center">
-                <h3 class="text-3xl font-bold mb-4" data-editable>John Harold Esmero Reyes</h3>
-                <p class="text-blue-200 mb-8 text-lg" data-editable>Professional Full-Stack Developer & Digital Innovator</p>
-                
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#" class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition duration-300">
-                        <span class="text-2xl">💼</span>
-                    </a>
-                    <a href="#" class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition duration-300">
-                        <span class="text-2xl">🐙</span>
-                    </a>
-                    <a href="#" class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition duration-300">
-                        <span class="text-2xl">💻</span>
-                    </a>
-                    <a href="#" class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition duration-300">
-                        <span class="text-2xl">📧</span>
-                    </a>
+    <!-- Enhanced Footer -->
+    <footer class="bg-gray-900 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">John Harold Esmero Reyes</h3>
+                    <p class="text-gray-400 mb-4">Full Stack Developer & UI/UX Designer passionate about creating amazing digital experiences.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
                 </div>
-                
-                <div class="border-t border-white/20 pt-8">
-                    <p class="text-blue-200">&copy; 2024 John Harold Esmero Reyes. All rights reserved. | Professional Portfolio</p>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-blue-400 transition-colors">About</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-blue-400 transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-blue-400 transition-colors">Portfolio</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-blue-400 transition-colors">Contact</a></li>
+                    </ul>
                 </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><span class="text-gray-400">Web Development</span></li>
+                        <li><span class="text-gray-400">Mobile Apps</span></li>
+                        <li><span class="text-gray-400">UI/UX Design</span></li>
+                        <li><span class="text-gray-400">Consultation</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">© 2024 <span class="editable" contenteditable="false" data-field="footerName">John Harold Esmero Reyes</span>. All rights reserved. Made with ❤️ and lots of ☕</p>
             </div>
         </div>
     </footer>
 
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="modalTitle" class="text-3xl font-bold">Project Details</h3>
+                <button onclick="closeProjectModal()" class="text-gray-400 hover:text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="modalContent">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Make content editable functionality
-        let isEditMode = false;
-        
+        let editMode = false;
+        let portfolioData = {};
+        let currentTestimonial = 0;
+        let particlesEnabled = true;
+        let typingEnabled = true;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAnimations();
+            initializeParticles();
+            loadSettings();
+            setupEventListeners();
+            initializePortfolioFilter();
+            initializeTestimonialSlider();
+        });
+
+        function toggleSettings() {
+            const panel = document.getElementById('settingsPanel');
+            panel.classList.toggle('open');
+        }
+
         function toggleEditMode() {
-            isEditMode = !isEditMode;
-            const editButton = document.getElementById('edit-toggle');
-            const editableElements = document.querySelectorAll('[data-editable]');
+            editMode = !editMode;
+            const body = document.body;
+            const btn = document.getElementById('editModeBtn');
             
-            if (isEditMode) {
-                editButton.textContent = '💾 Save Changes';
-                editButton.className = 'fixed top-4 right-4 z-50 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold transition duration-300 shadow-lg';
-                
-                editableElements.forEach(element => {
-                    element.contentEditable = true;
-                    element.style.outline = '2px dashed #3b82f6';
-                    element.style.outlineOffset = '4px';
-                    element.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
-                    element.title = 'Click to edit this content';
-                });
-                
-                // Show edit instructions
-                showEditInstructions();
+            if (editMode) {
+                body.classList.add('edit-mode');
+                btn.innerHTML = '<i class="fas fa-times mr-2"></i>Exit Edit';
+                btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                btn.classList.add('bg-red-600', 'hover:bg-red-700');
+                enableEditing();
+                showNotification('Edit mode enabled! Click any text to edit.');
             } else {
-                editButton.textContent = '✏️ Edit Content';
-                editButton.className = 'fixed top-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold transition duration-300 shadow-lg';
-                
-                editableElements.forEach(element => {
-                    element.contentEditable = false;
-                    element.style.outline = 'none';
-                    element.style.backgroundColor = 'transparent';
-                    element.title = '';
+                body.classList.remove('edit-mode');
+                btn.innerHTML = '<i class="fas fa-edit mr-2"></i>Edit Mode';
+                btn.classList.remove('bg-red-600', 'hover:bg-red-700');
+                btn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                disableEditing();
+                showNotification('Edit mode disabled. Changes saved!');
+            }
+        }
+
+        function previewMode() {
+            if (editMode) toggleEditMode();
+            toggleSettings();
+            showNotification('Preview mode activated!');
+        }
+
+        function enableEditing() {
+            const editables = document.querySelectorAll('.editable');
+            editables.forEach(el => {
+                el.contentEditable = true;
+                el.addEventListener('blur', saveFieldData);
+                el.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.blur();
+                    }
                 });
-                
-                // Hide edit instructions
-                hideEditInstructions();
-                
-                // Save changes notification
-                showSaveNotification();
+            });
+        }
+
+        function disableEditing() {
+            const editables = document.querySelectorAll('.editable');
+            editables.forEach(el => {
+                el.contentEditable = false;
+                el.removeEventListener('blur', saveFieldData);
+            });
+        }
+
+        function saveFieldData(e) {
+            const field = e.target.dataset.field;
+            const value = e.target.textContent;
+            portfolioData[field] = value;
+        }
+
+        function setupEventListeners() {
+            // Theme selection
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.theme-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    applyTheme(this.dataset.theme);
+                });
+            });
+
+            // Color selection
+            document.querySelectorAll('.color-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    applyPrimaryColor(this.dataset.color);
+                });
+            });
+
+            // Custom color
+            document.getElementById('customColor').addEventListener('change', function(e) {
+                applyPrimaryColor(e.target.value);
+            });
+
+            // Background images
+            document.getElementById('coverImage').addEventListener('change', function(e) {
+                applyBackgroundImage('home', e.target.value);
+            });
+
+            document.getElementById('resumeBackground').addEventListener('change', function(e) {
+                applyBackgroundImage('experience', e.target.value);
+            });
+
+            document.getElementById('testimonialsBackground').addEventListener('change', function(e) {
+                applyBackgroundImage('testimonials', e.target.value);
+            });
+
+            document.getElementById('contactBackground').addEventListener('change', function(e) {
+                applyBackgroundImage('contact', e.target.value);
+            });
+
+            // Profile image
+            document.getElementById('profileImage').addEventListener('change', function(e) {
+                if (e.target.value) {
+                    document.getElementById('profileImg').src = e.target.value;
+                }
+            });
+
+            // Social links
+            document.getElementById('linkedinUrl').addEventListener('change', updateSocialLinks);
+            document.getElementById('githubUrl').addEventListener('change', updateSocialLinks);
+            document.getElementById('twitterUrl').addEventListener('change', updateSocialLinks);
+            document.getElementById('instagramUrl').addEventListener('change', updateSocialLinks);
+            document.getElementById('youtubeUrl').addEventListener('change', updateSocialLinks);
+            document.getElementById('behanceUrl').addEventListener('change', updateSocialLinks);
+
+            // Animation toggles
+            document.getElementById('enableParticles').addEventListener('change', function(e) {
+                particlesEnabled = e.target.checked;
+                if (particlesEnabled) {
+                    initializeParticles();
+                } else {
+                    document.getElementById('particles-container').innerHTML = '';
+                }
+            });
+
+            document.getElementById('enableTyping').addEventListener('change', function(e) {
+                typingEnabled = e.target.checked;
+            });
+
+            // Contact form
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                showNotification('Message sent successfully! (This is a demo)');
+                this.reset();
+            });
+        }
+
+        function applyTheme(theme) {
+            const body = document.body;
+            const gradientSections = document.querySelectorAll('.gradient-bg, .gradient-bg-2, .gradient-bg-3');
+            
+            // Reset classes
+            body.className = body.className.replace(/bg-\w+-\d+/g, '');
+            
+            switch(theme) {
+                case 'light':
+                    body.classList.add('bg-gray-100', 'text-gray-900');
+                    body.classList.remove('text-white');
+                    break;
+                case 'blue':
+                    body.classList.add('bg-blue-900', 'text-white');
+                    break;
+                case 'purple':
+                    body.classList.add('bg-purple-900', 'text-white');
+                    break;
+                case 'green':
+                    body.classList.add('bg-green-900', 'text-white');
+                    break;
+                case 'pink':
+                    body.classList.add('bg-pink-900', 'text-white');
+                    break;
+                default:
+                    body.classList.add('bg-gray-900', 'text-white');
             }
         }
-        
-        function showEditInstructions() {
-            const instructions = document.createElement('div');
-            instructions.id = 'edit-instructions';
-            instructions.className = 'fixed top-20 right-4 z-40 bg-white p-4 rounded-lg shadow-lg border-l-4 border-blue-600 max-w-sm';
-            instructions.innerHTML = `
-                <h4 class="font-bold text-gray-900 mb-2">✏️ Edit Mode Active</h4>
-                <ul class="text-sm text-gray-600 space-y-1">
-                    <li>• Click any highlighted text to edit</li>
-                    <li>• Change your name, skills, projects</li>
-                    <li>• Update contact information</li>
-                    <li>• Modify service descriptions</li>
-                    <li>• Click "Save Changes" when done</li>
-                </ul>
+
+        function applyPrimaryColor(color) {
+            const style = document.createElement('style');
+            style.id = 'dynamic-color-style';
+            
+            // Remove existing dynamic style
+            const existingStyle = document.getElementById('dynamic-color-style');
+            if (existingStyle) {
+                existingStyle.remove();
+            }
+            
+            style.textContent = `
+                :root { --primary-color: ${color}; }
+                .text-blue-400, .text-blue-300 { color: ${color} !important; }
+                .bg-blue-600, .bg-blue-400 { background-color: ${color} !important; }
+                .border-blue-400 { border-color: ${color} !important; }
+                .from-blue-600 { --tw-gradient-from: ${color}; }
+                .to-blue-600 { --tw-gradient-to: ${color}; }
             `;
-            document.body.appendChild(instructions);
+            document.head.appendChild(style);
         }
-        
-        function hideEditInstructions() {
-            const instructions = document.getElementById('edit-instructions');
-            if (instructions) {
-                instructions.remove();
+
+        function applyBackgroundImage(sectionId, imageUrl) {
+            const section = document.getElementById(sectionId);
+            if (imageUrl && section) {
+                section.style.backgroundImage = `url(${imageUrl})`;
+                section.classList.add('background-overlay');
             }
         }
-        
-        function showSaveNotification() {
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-green-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg';
-            notification.textContent = '✅ Changes saved successfully!';
-            document.body.appendChild(notification);
+
+        function removeBackground(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.backgroundImage = '';
+                section.classList.remove('background-overlay');
+            }
+            
+            // Clear the input
+            const inputs = {
+                'home': 'coverImage',
+                'experience': 'resumeBackground',
+                'testimonials': 'testimonialsBackground',
+                'contact': 'contactBackground'
+            };
+            
+            if (inputs[sectionId]) {
+                document.getElementById(inputs[sectionId]).value = '';
+            }
+        }
+
+        function updateSocialLinks() {
+            const links = {
+                linkedin: document.getElementById('linkedinUrl').value,
+                github: document.getElementById('githubUrl').value,
+                twitter: document.getElementById('twitterUrl').value,
+                instagram: document.getElementById('instagramUrl').value,
+                youtube: document.getElementById('youtubeUrl').value,
+                behance: document.getElementById('behanceUrl').value
+            };
+
+            const socialContainer = document.getElementById('socialLinks');
+            const socialLinks = socialContainer.querySelectorAll('a');
+            
+            const linkOrder = ['linkedin', 'github', 'twitter', 'instagram', 'youtube', 'behance'];
+            
+            linkOrder.forEach((platform, index) => {
+                if (socialLinks[index] && links[platform]) {
+                    socialLinks[index].href = links[platform];
+                    socialLinks[index].target = '_blank';
+                    socialLinks[index].rel = 'noopener noreferrer';
+                }
+            });
+        }
+
+        function initializeAnimations() {
+            // Enhanced typing animation
+            const typingText = document.getElementById('typingText');
+            const texts = ['Full Stack Developer', 'UI/UX Designer', 'Mobile App Developer', 'Problem Solver', 'Creative Thinker'];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typeWriter() {
+                if (!typingEnabled) return;
+                
+                const currentText = texts[textIndex];
+                
+                if (isDeleting) {
+                    typingText.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingText.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentText.length) {
+                    setTimeout(() => isDeleting = true, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+
+                setTimeout(typeWriter, isDeleting ? 50 : 100);
+            }
+
+            typeWriter();
+
+            // Enhanced Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate skill bars
+                        const skillBars = entry.target.querySelectorAll('.skill-bar');
+                        skillBars.forEach((bar, index) => {
+                            const width = bar.dataset.width;
+                            setTimeout(() => {
+                                bar.style.width = width + '%';
+                            }, index * 200);
+                        });
+
+                        // Animate progress circles
+                        const progressCircles = entry.target.querySelectorAll('.progress-ring-circle');
+                        progressCircles.forEach((circle, index) => {
+                            const percent = circle.dataset.percent;
+                            const circumference = 2 * Math.PI * 56;
+                            const offset = circumference - (percent / 100) * circumference;
+                            setTimeout(() => {
+                                circle.style.strokeDashoffset = offset;
+                            }, index * 300);
+                        });
+
+                        // Animate counters
+                        const counters = entry.target.querySelectorAll('[data-count]');
+                        counters.forEach((counter, index) => {
+                            const target = parseInt(counter.dataset.count);
+                            let current = 0;
+                            const increment = target / 60;
+                            setTimeout(() => {
+                                const timer = setInterval(() => {
+                                    current += increment;
+                                    if (current >= target) {
+                                        current = target;
+                                        clearInterval(timer);
+                                    }
+                                    counter.textContent = Math.floor(current);
+                                }, 50);
+                            }, index * 200);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            // Observe sections
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        function initializeParticles() {
+            if (!particlesEnabled) return;
+            
+            const container = document.getElementById('particles-container');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function initializePortfolioFilter() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter items
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        }
+
+        function initializeTestimonialSlider() {
+            const track = document.getElementById('testimonialTrack');
+            const totalSlides = track.children.length;
+            
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % totalSlides;
+                track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+            }, 5000);
+        }
+
+        function nextTestimonial() {
+            const track = document.getElementById('testimonialTrack');
+            const totalSlides = track.children.length;
+            currentTestimonial = (currentTestimonial + 1) % totalSlides;
+            track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        }
+
+        function previousTestimonial() {
+            const track = document.getElementById('testimonialTrack');
+            const totalSlides = track.children.length;
+            currentTestimonial = (currentTestimonial - 1 + totalSlides) % totalSlides;
+            track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        }
+
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            
+            // Sample project data
+            const projects = {
+                project1: {
+                    title: 'E-Commerce Platform',
+                    description: 'A comprehensive e-commerce solution built with modern technologies.',
+                    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'AWS'],
+                    features: ['User Authentication', 'Payment Processing', 'Inventory Management', 'Order Tracking', 'Admin Dashboard'],
+                    images: ['https://via.placeholder.com/600x400/3b82f6/ffffff?text=E-Commerce+Platform']
+                },
+                project2: {
+                    title: 'Mobile Banking App',
+                    description: 'Secure mobile banking application with biometric authentication.',
+                    technologies: ['React Native', 'Firebase', 'Redux', 'Biometric API'],
+                    features: ['Biometric Login', 'Real-time Transactions', 'Account Management', 'Bill Payments', 'Investment Tracking'],
+                    images: ['https://via.placeholder.com/600x400/10b981/ffffff?text=Banking+App']
+                }
+                // Add more projects as needed
+            };
+            
+            const project = projects[projectId];
+            if (project) {
+                modalTitle.textContent = project.title;
+                modalContent.innerHTML = `
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <img src="${project.images[0]}" alt="${project.title}" class="w-full rounded-lg mb-4">
+                        </div>
+                        <div>
+                            <p class="text-gray-300 mb-6">${project.description}</p>
+                            <h4 class="text-xl font-semibold mb-3">Technologies Used</h4>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                ${project.technologies.map(tech => `<span class="bg-blue-600 px-3 py-1 rounded-full text-sm">${tech}</span>`).join('')}
+                            </div>
+                            <h4 class="text-xl font-semibold mb-3">Key Features</h4>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                                ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                modal.classList.add('active');
+            }
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.remove('active');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notification-text');
+            
+            notificationText.textContent = message;
+            notification.classList.add('show');
             
             setTimeout(() => {
-                notification.remove();
+                notification.classList.remove('show');
             }, 3000);
         }
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        function saveSettings() {
+            const saveSpinner = document.getElementById('saveSpinner');
+            saveSpinner.classList.remove('hidden');
+            
+            const settings = {
+                theme: document.querySelector('.theme-option.active')?.dataset.theme || 'dark',
+                primaryColor: document.querySelector('.color-option.active')?.dataset.color || '#3b82f6',
+                customColor: document.getElementById('customColor').value,
+                backgrounds: {
+                    cover: document.getElementById('coverImage').value,
+                    resume: document.getElementById('resumeBackground').value,
+                    testimonials: document.getElementById('testimonialsBackground').value,
+                    contact: document.getElementById('contactBackground').value
+                },
+                media: {
+                    profile: document.getElementById('profileImage').value,
+                    logo: document.getElementById('logoImage').value,
+                    favicon: document.getElementById('faviconImage').value
+                },
+                socialLinks: {
+                    linkedin: document.getElementById('linkedinUrl').value,
+                    github: document.getElementById('githubUrl').value,
+                    twitter: document.getElementById('twitterUrl').value,
+                    instagram: document.getElementById('instagramUrl').value,
+                    youtube: document.getElementById('youtubeUrl').value,
+                    behance: document.getElementById('behanceUrl').value
+                },
+                animations: {
+                    particles: document.getElementById('enableParticles').checked,
+                    typing: document.getElementById('enableTyping').checked,
+                    hover: document.getElementById('enableHover').checked,
+                    glow: document.getElementById('enableGlow').checked
+                },
+                portfolioData: portfolioData
+            };
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+            // Simulate save delay
+            setTimeout(() => {
+                localStorage.setItem('portfolioSettingsV2', JSON.stringify(settings));
+                saveSpinner.classList.add('hidden');
+                showNotification('Configuration saved successfully!');
+            }, 1000);
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Animate section reveals
-                    const revealElements = entry.target.querySelectorAll('.section-reveal');
-                    revealElements.forEach((el, index) => {
-                        setTimeout(() => {
-                            el.classList.add('animate');
-                        }, index * 100);
-                    });
-
-                    // Animate skill progress bars
-                    const skillItems = entry.target.querySelectorAll('.skill-item');
-                    skillItems.forEach((item, index) => {
-                        const progressBar = item.querySelector('.skill-progress');
-                        const width = progressBar.getAttribute('data-width');
-                        setTimeout(() => {
-                            progressBar.style.width = width;
-                        }, index * 200);
-                    });
-
-                    // Animate counters
-                    if (entry.target.id === 'about') {
-                        animateCounter(document.getElementById('experience-years'), 5);
-                        animateCounter(document.getElementById('projects-completed'), 150);
-                        animateCounter(document.getElementById('happy-clients'), 95);
-                        animateCounter(document.getElementById('awards-won'), 15);
+        function loadSettings() {
+            const saved = localStorage.getItem('portfolioSettingsV2');
+            if (saved) {
+                try {
+                    const settings = JSON.parse(saved);
+                    
+                    // Apply theme
+                    if (settings.theme) {
+                        document.querySelectorAll('.theme-option').forEach(opt => opt.classList.remove('active'));
+                        document.querySelector(`[data-theme="${settings.theme}"]`)?.classList.add('active');
+                        applyTheme(settings.theme);
                     }
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Counter animation function
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                start += increment;
-                element.textContent = Math.floor(start);
-                if (start >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                }
-            }, 16);
-        }
-
-        // Contact form handling
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const firstName = this.querySelector('input[placeholder="John"]').value;
-            const lastName = this.querySelector('input[placeholder="Doe"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const projectType = this.querySelectorAll('select')[0].value;
-            const budget = this.querySelectorAll('select')[1].value;
-            
-            alert(`Thank you, ${firstName} ${lastName}! Your ${projectType} project inquiry (Budget: ${budget}) has been received. I'll respond to ${email} within 24 hours with a detailed proposal and next steps.`);
-            this.reset();
-        });
-
-        // Typing effect for hero section
-        const typingElement = document.querySelector('.typing-effect');
-        const texts = [
-            'Professional Full-Stack Developer',
-            'Digital Innovation Specialist',
-            'Cloud Architecture Expert',
-            'Mobile App Developer'
-        ];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeWriter() {
-            const currentText = texts[textIndex];
-            
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentText.length) {
-                setTimeout(() => isDeleting = true, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-            }
-
-            setTimeout(typeWriter, isDeleting ? 50 : 100);
-        }
-
-        // Start typing effect
-        setTimeout(typeWriter, 1000);
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b729678346b4d0',t:'MTc1OTk0MjQ4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+                    
+                    // Apply color
+                    if (settings.primaryColor) {
+                        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+                        document.querySelector(`[data-color="${settings.primaryColor}"]`)?.classList.add('active');
+                        applyPrimaryColor(settings.primaryColor);
+                    }
+                    
+                    // Load form values
+                    Object.keys(settings).forEach(category => {
+                        if (typeof settings[category] === 'object' && settings[category] !== null) {
+                            Object.keys(settings[category]).forEach(key => {
+                                const element = document.getElementById(key) || 
+                                               document.getElementById(key + 'Url') ||
+                                               document.getElementById(key + 'Image') ||
+                                               document.getElementById(key + 'Background') ||
+                                               document.getElementById('enable' + key.charAt(0).toUpperCase() + key.slice(1));
+                                
+                                if (element) {
+                                    if (element.type === 'checkbox') {
+                                        element.checked = settings[category][key];
+                                    } else {
+                                        element.value = settings[category][key];
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    
+                    // Load portfolio data
+                    if (settings.portfolioData) {
+                        portfolioData = settings.portfolioData;
+                        Object.keys(portfolioData).forEach(field => {
+                            const element = document.querySelector(`[data-field="${field}"]`);
+                            if (element) {
+                                element.textContent = portfolioData[field];
+                            }
+                        });
+                    }
+                    
+                    // Apply backgrounds
+                    if (settings.backgrounds) {
+                        Object.keys(settings.backgrounds).forEach(bg => {
+                            const sectionMap = {
+                                cover: 'home',
+                                resume: 'experience',
+                                testimonials: 'testimonials',
+                                contact: 'contact'
+                            };
+                            if (settings.backgrounds[bg] && sectionMap[bg]) {
+                                applyBackgroundImage(sectionMap[bg], settings.backgrounds[bg]);
+                            }
+                        });
+                    }
+                    
+                    // Update social links
+                    updateSocialLinks();
+                    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b829dcf587b4d0',t:'MTc1OTk1Mjk4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
